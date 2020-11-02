@@ -1,20 +1,5 @@
-const assertEqual = function(actual, expected) {
-  if (actual === expected) {
-    console.log(`🟢🟢🟢 Assertion Passed: ${actual} === ${expected}`);
-  } else {
-    console.log(`🔴🔴🔴 Assertion Failed: ${actual} !== ${expected}`);
-  }
-};
-
-const eqArrays = function(arrA, arrB) {
-  if (arrA.length !== arrB.length) return false;
-
-  for (let i = 0; i < arrA.length; i++) {
-    if (arrA[i] !== arrB[i]) return false;
-  }
-
-  return true;
-};
+const eqArrays = require('./eqArrays');
+const assertEqual = require('./assertEqual');
 
 // Returns true if both objects have identical keys with identical values.
 // Otherwise you get back a big fat false!
@@ -44,74 +29,76 @@ const eqObjects = function(objectA, objectB) {
   return true;
 };
 
-const ab = { a: "1", b: "2" };
-const ba = { b: "2", a: "1" };
+module.exports = eqObjects;
 
-assertEqual(eqObjects(ab, ba), true);
+// const ab = { a: "1", b: "2" };
+// const ba = { b: "2", a: "1" };
 
-const abc = { a: "1", b: "2", c: "3" };
-assertEqual(eqObjects(ab, abc), false);
+// assertEqual(eqObjects(ab, ba), true);
 
-const a = {a: '1'};
-assertEqual(eqObjects(ab, a), false);
+// const abc = { a: "1", b: "2", c: "3" };
+// assertEqual(eqObjects(ab, abc), false);
 
-const cd = { c: "1", d: ["2", 3] };
-const dc = { d: ["2", 3], c: "1" };
-assertEqual(eqObjects(cd, dc), true); // => true
+// const a = {a: '1'};
+// assertEqual(eqObjects(ab, a), false);
 
-const cd2 = { c: "1", d: ["2", 3, 4] };
-assertEqual(eqObjects(cd, cd2), false); // => false
+// const cd = { c: "1", d: ["2", 3] };
+// const dc = { d: ["2", 3], c: "1" };
+// assertEqual(eqObjects(cd, dc), true); // => true
 
-const cd3 = { c: "1", d: 2 };
-assertEqual(eqObjects(cd, cd3), false); // => false
+// const cd2 = { c: "1", d: ["2", 3, 4] };
+// assertEqual(eqObjects(cd, cd2), false); // => false
 
-const test1 = eqObjects({ a: { z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }) // => true
-assertEqual(test1, true);
+// const cd3 = { c: "1", d: 2 };
+// assertEqual(eqObjects(cd, cd3), false); // => false
 
-const test2 = eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }) // => false
-assertEqual(test2, false);
+// const test1 = eqObjects({ a: { z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }) // => true
+// assertEqual(test1, true);
 
-const test3 = eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: 1, b: 2 }) // => false
-assertEqual(test3, false);
+// const test2 = eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }) // => false
+// assertEqual(test2, false);
+
+// const test3 = eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: 1, b: 2 }) // => false
+// assertEqual(test3, false);
 
 
-let quadNestedObj = {
-  a: {
-    b: {
-      c: 1,
-      d: {
-        e: {
-          f: 2,
-          g: 3
-        },
-        h: {
-          i: 'hello',
-          j: true
-        }
-      }
-    }
-  },
-  k: [1, 2, 3]
-}
+// let quadNestedObj = {
+//   a: {
+//     b: {
+//       c: 1,
+//       d: {
+//         e: {
+//           f: 2,
+//           g: 3
+//         },
+//         h: {
+//           i: 'hello',
+//           j: true
+//         }
+//       }
+//     }
+//   },
+//   k: [1, 2, 3]
+// }
 
-let quadNestedObjCpy = {
-  a: {
-    b: {
-      c: 1,
-      d: {
-        e: {
-          f: 2,
-          g: 3
-        },
-        h: {
-          i: 'hello',
-          j: true
-        }
-      }
-    }
-  },
-  k: [1, 2, 3]
-}
+// let quadNestedObjCpy = {
+//   a: {
+//     b: {
+//       c: 1,
+//       d: {
+//         e: {
+//           f: 2,
+//           g: 3
+//         },
+//         h: {
+//           i: 'hello',
+//           j: true
+//         }
+//       }
+//     }
+//   },
+//   k: [1, 2, 3]
+// }
 
-const test4 = eqObjects(quadNestedObj, quadNestedObjCpy);
-assertEqual(test4, true);
+// const test4 = eqObjects(quadNestedObj, quadNestedObjCpy);
+// assertEqual(test4, true);
